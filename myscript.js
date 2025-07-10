@@ -65,4 +65,19 @@ function displayBooks() {
     });
 };
 
+function  createBookForm() {
+    const bookFormContainer = document.createElement("div");
+    bookFormContainer.className = "book-form-container"
+
+    const bookForm = document.createElement("div");
+    bookForm.className = "book-form";
+
+    document.body.appendChild(bookFormContainer);
+    bookFormContainer.appendChild(bookForm);
+}
+
 displayBooks();
+
+const addBookBtn = document.querySelector(".add-book");
+
+addBookBtn.addEventListener("click", createBookForm)
