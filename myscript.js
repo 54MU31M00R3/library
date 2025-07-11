@@ -1,4 +1,4 @@
-const myLibrary = [
+let myLibrary = [
     {
         id: "123e4567-e89b-12d3-a456-426614174002",
         title: "To Kill a Mockingbird",
@@ -37,12 +37,6 @@ function Book(title, author, pages, read){
     };
 };
 
-function addBookTolibrary(title, author, pages, read) {
-    const newBook = new Book(title, author, pages, read);
-
-    myLibrary.push(newBook)
-};
-
 function displayBooks() {
     const container = document.querySelector(".card-container")
 
@@ -62,8 +56,41 @@ function displayBooks() {
         const pages = document.createElement("div");
         pages.textContent = `${book.pages} pages`;
         card.appendChild(pages);
+
+        const read = document.createElement("div");
+        read.textContent = `${book.read} pages`;
+        card.appendChild(read);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.type="button"
+        deleteBtn.className="delete-book-btn"
+        deleteBtn.textContent="Delete"
+
+        card.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener("click", () => {
+            deleteBook(book.id)
+        });
     });
 };
+
+function deleteBook(id) {
+    myLibrary = myLibrary.filter((book) => {
+        return id !== book.id;
+    });
+
+    refreshBooks();
+};
+
+function refreshBooks() {
+    const cards = document.querySelectorAll(".card");
+        
+    cards.forEach((card) => {
+        card.remove();
+    });
+    
+    displayBooks();
+}
 
 function  createBookForm() {
     const bookFormContainer = document.createElement("div");
@@ -129,7 +156,18 @@ function  createBookForm() {
     addBookBtn.className = "book-form-button";
 
     bookForm.appendChild(addBookBtn);
+
+    addBookBtn.addEventListener("click", addBookTolibrary)
+
+    function addBookTolibrary() {
+        const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value);
     
+        myLibrary.push(newBook)
+    
+        refreshBooks();
+    
+        bookFormContainer.remove();
+    };
 }
 
 displayBooks();
