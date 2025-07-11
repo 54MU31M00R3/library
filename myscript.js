@@ -178,7 +178,7 @@ function  createBookForm() {
     addBookBtn.addEventListener("click", addBookTolibrary);
 
     function addBookTolibrary() {
-        const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value);
+        const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
     
         myLibrary.push(newBook);
     
