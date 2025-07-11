@@ -67,17 +67,73 @@ function displayBooks() {
 
 function  createBookForm() {
     const bookFormContainer = document.createElement("div");
-    bookFormContainer.className = "book-form-container"
+    bookFormContainer.className = "book-form-container";
 
     const bookForm = document.createElement("div");
     bookForm.className = "book-form";
 
     document.body.appendChild(bookFormContainer);
     bookFormContainer.appendChild(bookForm);
+
+    const titleInput = document.createElement("input");
+    titleInput.type="text";
+    titleInput.className="book-form-input";
+    titleInput.name="title"
+
+    const titleLabel = document.createElement("label");
+    titleLabel.for="title";
+    titleLabel.textContent="Title";
+
+    bookForm.appendChild(titleLabel);
+    bookForm.appendChild(titleInput);
+
+    const authorInput = document.createElement("input");
+    authorInput.type="text";
+    authorInput.className="book-form-input";
+    authorInput.name="author";
+
+    const authorLabel = document.createElement("label");
+    authorLabel.for="author";
+    authorLabel.textContent="Author";
+
+    bookForm.appendChild(authorLabel);
+    bookForm.appendChild(authorInput);
+    
+    const pagesInput = document.createElement("input");
+    pagesInput.type="text";
+    pagesInput.className="book-form-input"
+    pagesInput.name="pages";
+
+    const pagesLabel = document.createElement("label");
+    pagesLabel.for="pages";
+    pagesLabel.textContent="Pages";
+
+    bookForm.appendChild(pagesLabel);
+    bookForm.appendChild(pagesInput);
+
+    const readInput = document.createElement("input");
+    readInput.type="text";
+    readInput.className="book-form-input";
+    readInput.name="read";
+
+    const readLabel = document.createElement("label");
+    readLabel.for="read";
+    readLabel.textContent="Read";
+
+    bookForm.appendChild(readLabel);
+    bookForm.appendChild(readInput);
+
+    const addBookBtn = document.createElement("button");
+    addBookBtn.type = "button";
+    addBookBtn.textContent="Submit"
+    addBookBtn.className = "book-form-button";
+
+    bookForm.appendChild(addBookBtn);
+    
 }
 
 displayBooks();
 
-const addBookBtn = document.querySelector(".add-book");
+const getBookFormBtn = document.querySelector(".add-book");
 
-addBookBtn.addEventListener("click", createBookForm)
+getBookFormBtn.addEventListener("click", createBookForm)
