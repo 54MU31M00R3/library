@@ -63,7 +63,7 @@ function displayBooks() {
 
         const deleteBtn = document.createElement("button");
         deleteBtn.type="button"
-        deleteBtn.className="delete-book-btn"
+        deleteBtn.className="book-btn"
         deleteBtn.textContent="Delete"
 
         card.appendChild(deleteBtn);
@@ -71,6 +71,24 @@ function displayBooks() {
         deleteBtn.addEventListener("click", () => {
             deleteBook(book.id)
         });
+
+        const readBtn = document.createElement("button");
+        readBtn.type="button";
+        readBtn.className="book-btn";
+        readBtn.textContent="Read Status";
+
+        card.appendChild(readBtn);
+
+        readBtn.addEventListener("click", () => {
+            if (book.read === "read") {
+                book.read = "unread";
+            } else {
+                book.read = "read";
+            };
+
+            refreshBooks();
+        });
+
     });
 };
 
@@ -157,12 +175,12 @@ function  createBookForm() {
 
     bookForm.appendChild(addBookBtn);
 
-    addBookBtn.addEventListener("click", addBookTolibrary)
+    addBookBtn.addEventListener("click", addBookTolibrary);
 
     function addBookTolibrary() {
         const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value);
     
-        myLibrary.push(newBook)
+        myLibrary.push(newBook);
     
         refreshBooks();
     
